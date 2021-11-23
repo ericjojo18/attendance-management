@@ -16,8 +16,9 @@ class CreateEmergesTable extends Migration
         Schema::create('emerges', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('date_day');
             $table->string('date_coming');
-            $table->string('departure_date');
+            $table->string('departure_date')->nullable();
             $table->timestamps();
         });
     }

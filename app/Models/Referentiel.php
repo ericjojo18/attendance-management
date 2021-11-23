@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Referentiel extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'label',   
+    ];
 }

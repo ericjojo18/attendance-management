@@ -15,7 +15,7 @@ class CreateReferentielsTable extends Migration
     {
         Schema::create('referentiels', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
+            $table->string('label'); 
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateRoutersTable extends Migration
             $table->id();
             $table->string('ip_address');
             $table->string('region');
-            $table->string('ville');
+            $table->string('country');
             $table->string('city_code');
             $table->timestamps();
         });

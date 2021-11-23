@@ -3,13 +3,15 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {
+    use HasRoles;
     use PasswordValidationRules;
 
     /**
@@ -28,12 +30,13 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'nom' => $input['nom'],
             'prenom' => $input['prenom'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
-        
+        $user->assignRole('super-admin');
+        return $user;
     }
 }

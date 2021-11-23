@@ -22,41 +22,45 @@ class EmergeController extends Controller
         $data = $reponse->json();
         //  dd($data);
         $request->request->add(['region'=>$data['region']]);
-        // $request->request->add(['ville'=>$data['ville']]);
+         $request->request->add(['country'=>$data['country']]);
 
         $validated = $request->validate([
             'email' =>'required|email|exists:users,email',
             'ip_address' => 'required|ip|exists:routers,ip_address',
             'region' => 'string|exists:routers,region',
-            // 'ville' => 'string|exists:routers,ville',
+            'ville' => 'string|exists:routers,country',
         ]);
         // dd($request->all());
         if(Auth::id() != null)
         {
-           $emerge= Emerge::select('id','user_id','date_coming','departure_date')
+           $emerge= Emerge::select('id','user_id','date_day','date_coming','departure_date')
                                ->where('user_id',Auth::id())
-                            //    ->where('dayDate',date('Y-m-d'))
+                               ->where('date_day',date('Y-m-d'))
                                ->first();
             if($emerge === null)
             {
                 // Create new day appointment
                 $newEmerge = new Emerge();
                 $newEmerge->user_id = Auth::id();
-                // $newEmerge->dayDate = date('Y-m-d');
+                $newEmerge->date_day = date('Y-m-d');
                 $newEmerge->date_coming = date('H:i:s');
                 $newEmerge->save();
-                return redirect('emargement')->with('date_coming','Pointage du matin effectuer avec succès !');
+                session()->flash('success', 'modifier  avec succés');
+                session()->flash('success', 'Pointage du matin effectuer avec succès');
+                return redirect('emargement');
+                with('date_coming','Pointage du matin effectuer avec succès !');
             }elseif($emerge->date_coming !==null && $emerge->departure_date !== null)
             {
-                return redirect('emargement')->with('departure_date','Vous avez déjà pointer 2 fois au cour de cette journnée !');
+                session()->flash('success', 'Vous avez déjà pointer 2 fois au cour de cette journnée !');
+                return redirect('emargement');
 
             }else
             {
                $updateEmerge = Emerge::find($emerge->id);
-               $updateEmerge->departure_date = date('Y-m-d H:i:s');
+               $updateEmerge->departure_date = date('H:i:s');
                $updateEmerge->save();
-
-               return redirect('emerge.index')->with('enening_success','Pointage du soir effectuer avec succès !');
+               session()->flash('success','Pointage du soir effectuer avec succès !');
+               return redirect('emargement');
             }
         }
     }

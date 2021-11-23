@@ -58,6 +58,18 @@
 													</ul>
 												</div>
 											@endif
+                      @if(session()->has('success'))
+                      <div class="alert alert-success alert-dismissible border-1 border-left-3 border-left-success"
+                                         role="alert">
+                                        <button type="button"
+                                                class="close"
+                                                data-dismiss="alert"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <div class="text-black-70">{{ session('success')}}</div>
+                                    </div>
+                    @endif
                     <p class="card-description">  </p>
                     <form class="forms-sample" action="{{ route('emerge.index') }}" method="POST">
                       @csrf
@@ -67,7 +79,7 @@
                       </div>
                       <div class="form-group">
                         <label for="ip_address">Adresse ip</label>
-                        <input type="text" class="form-control" id="ip_address" name="ip_address">
+                        <input type="text" class="form-control" id="ip_address" name="ip_address" >
                       </div>
                       <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                       <button class="btn btn-light">Cancel</button>

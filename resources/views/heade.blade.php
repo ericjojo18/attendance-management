@@ -9,7 +9,9 @@
           </div>
           <div class="nav-profile-text d-flex flex-column">
             <span class="font-weight-bold mb-2">{{Auth::user()->prenom}} {{Auth::user()->nom}}</span>
-            <span class="text-secondary text-small">Project Manager</span>
+            @foreach(auth()->user()->roles as $role)
+            <div class="badge badge-primary ">{{$role->name}}</div>
+            @endforeach
           </div>
           <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
         </a>
@@ -40,13 +42,13 @@
         </div>
       </li> --}}
       <li class="nav-item">
-        <a class="nav-link" href="pages/icons/mdi.html">
+        <a class="nav-link" href="{{ route('reference.index') }}">
           <span class="menu-title">Referentiel</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/icons/mdi.html">
+        <a class="nav-link" href="{{ route('paternaire.index') }}">
           <span class="menu-title">Partenaire</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>

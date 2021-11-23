@@ -11,8 +11,8 @@ class Router extends Model
     protected $fillable = [
         'ip_address',
         'region',
-        'date_naissance',
-        'ville',
+        'country',
+        'city_code',
     ];
   
 
