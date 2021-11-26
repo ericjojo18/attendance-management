@@ -3,7 +3,7 @@
       <li class="nav-item nav-profile">
         <a href="#" class="nav-link">
           <div class="nav-profile-image">
-            <img src="assets/images/faces/face1.jpg" alt="profile">
+            <img src="{{asset('assets/images/faces/face1.jpg')}}" alt="profile">
             <span class="login-status online"></span>
             <!--change to offline or busy as needed-->
           </div>
@@ -16,18 +16,22 @@
           <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
         </a>
       </li>
+      
       <li class="nav-item">
         <a class="nav-link" href="{{ route('presence.index') }}">
           <span class="menu-title">Dashboard</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
       </li>
+      @can("admin")
       <li class="nav-item">
         <a class="nav-link" href="{{ route('profil.view') }}">
           <span class="menu-title">Profil</span>
           <i class="mdi mdi-account menu-icon"></i>
         </a>
       </li>
+      @endcan
+     
       {{-- <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-title">Basic UI Elements</span>
@@ -41,6 +45,7 @@
           </ul>
         </div>
       </li> --}}
+      @can("formateur")
       <li class="nav-item">
         <a class="nav-link" href="{{ route('reference.index') }}">
           <span class="menu-title">Referentiel</span>
@@ -53,18 +58,24 @@
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
+      
+        
       <li class="nav-item">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+        <a class="nav-link" href="{{ route('formation.index') }}">
           <span class="menu-title">Formation</span>
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>
         </a>
       </li>
+     
       <li class="nav-item">
-        <a class="nav-link" href="pages/charts/chartjs.html">
+        <a class="nav-link" href="{{ route('apprenant.index') }}">
           <span class="menu-title">Apprenant</span>
           <i class="mdi mdi-chart-bar menu-icon"></i>
         </a>
       </li>
+      @endcan
+     
+      @can("apprenant")
       <li class="nav-item">
         <a class="nav-link" href="{{ route('emerge.index') }}">
           <span class="menu-title">EMARGEMENT</span>
@@ -72,11 +83,21 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('presence.index') }}">
+        <a class="nav-link" href="{{ route('emerge.presenc') }}">
+          <span class="menu-title">Voir emargement</span>
+          <i class="mdi mdi-chart-bar menu-icon"></i>
+        </a>
+      </li>
+      @endcan
+      @can("formateur")
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('emerge.presence') }}">
           <span class="menu-title">Presence</span>
           <i class="mdi mdi-chart-bar menu-icon"></i>
         </a>
       </li>
+      @endcan
+      
       {{-- <li class="nav-item">
         <a class="nav-link" href="pages/tables/basic-table.html">
           <span class="menu-title">Tables</span>

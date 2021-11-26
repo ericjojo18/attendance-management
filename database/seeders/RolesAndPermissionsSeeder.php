@@ -32,7 +32,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         $role = Role::create(['name' => 'admin'])
               ->givePermissionTo(['manager create', 'manager edit','manager udpate','manager delete']);
-         $role = Role::create(['name' => 'enseignant'])
+         $role = Role::create(['name' => 'formateur'])
              ->givePermissionTo(['manager create', 'manager edit','manager udpate','manager delete']);
         $role = Role::create(['name' => 'apprenant'])
                ->givePermissionTo(['manager create', 'manager edit','manager udpate','manager delete'])

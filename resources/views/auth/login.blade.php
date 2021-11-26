@@ -85,16 +85,16 @@
                     <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">CONNEXION</button>
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
-                    <div class="form-check">
+                    {{-- <div class="form-check">
                       <label class="form-check-label text-muted" for="remember_me">
                         <input type="checkbox" class="form-check-input" id="remember_me" name="remember"> se rappelle
                       </label>
-                    </div>
+                    </div> --}}
                     @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}" class="auth-link text-black">Mot de passe Oublié?</a>
                     @endif
                   </div>
-                  <div class="text-center mt-4 font-weight-light"> Avez vous un compte sinon ? <a href="{{ route('register') }}" class="text-primary"> créer un compte</a>
+                  {{-- <div class="text-center mt-4 font-weight-light"> Avez vous un compte sinon ? <a href="{{ route('register') }}" class="text-primary"> créer un compte</a> --}}
                   </div>
                 </form>
               </div>

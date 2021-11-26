@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PARTENAIRES</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}../../assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}../../assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}../../assets/css/style.css">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{asset('assets/css/style.css')}}../../assets/images/favicon.ico" />
+    <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
   </head>
   <body>
     <div class="container-scroller">
       @include('header')
-      <!-- partial -->
       <div class="container-fluid page-body-wrapper">
-        @include('heade')
-        <!-- partial -->
+        @include('heade')>
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
@@ -50,26 +48,40 @@
                   <div class="card-body">
                     <h4 class="card-title">Créer un partenaire</h4>
                     <p class="card-description"></p>
-                    <form class="forms-sample" action="{{ route('paternaire.create') }}" method="POST">
+                    <form class="forms-sample" action="{{ route('formation.create') }}" method="POST">
                         @csrf
                       <div class="form-group">
-                        <label for="name">Nom du partenaire</label>
-                        <input type="text" class="form-control" id="name" name="name" >
+                        <label class="form-label"	for="partenaire_id">Partenaire</label>
+                        <select class="form-control" name="partenaire_id" id="partenaire_id">
+                            @foreach(App\Models\Partenaire::all() as $paternaire)
+                            <option value="">VEILLEZ REMPLIR</option>
+                            <option value="{{$paternaire->id}}">{{$paternaire->name}}</option>
+                            @endforeach
+                        </select>
                       </div>
                       <div class="form-group">
-                        <label for="activity_domain">Activite du domaine</label>
-                        <input type="text" class="form-control" id="activity_domain" name="activity_domain" >
+                        <label class="form-label"	for="referentiel_id">referentiel</label>
+                        <select class="form-control" name="referentiel_id" id="referentiel_id">
+                            @foreach(App\Models\Referentiel::all() as $referentiel)
+                            <option value="">VEILLEZ REMPLIR</option>
+                            <option value="{{$referentiel->id}}">{{$referentiel->label}}</option>
+                            @endforeach
+                        </select>
                       </div>
                       <div class="form-group">
-                        <label for="address">Adresse du partenaire</label>
-                        <input type="text" class="form-control" id="address" name="address" >
+                        <label for="type_formation">Formation</label>
+                        <input type="text" class="form-control" id="type_formation" name="type_formation" >
                       </div>
                       <div class="form-group">
-                        <label for="contact">Contact du partenaire</label>
-                        <input type="text" class="form-control" id="contact" name="contact" >
+                        <label for="beginDate">Date du debut</label>
+                        <input type="date" class="form-control" id="beginDate" name="beginDate" >
+                      </div>
+                      <div class="form-group">
+                        <label for="endDate">Date de fin</label>
+                        <input type="date" class="form-control" id="endDate" name="endDate" >
                       </div>
                       <button type="submit" class="btn btn-gradient-primary mr-2">Enregistrer</button>
-                      <a href="{{ route('paternaire.create') }}" class="btn btn-light">Retour</a>
+                      <a href="{{ route('formation.index') }}" class="btn btn-light">Retour</a>
                     </form>
                   </div>
                 </div>
@@ -78,9 +90,7 @@
             </div>
           </div>
         </div>
-        <!-- main-panel ends -->
       </div>
-      <!-- page-body-wrapper ends -->
     </div>
     <script src="{{asset('assets/vendors/js/vendor.bundle.base.js')}}"></script>
     <script src="{{asset('assets/js/off-canvas.js')}}"></script>

@@ -2,13 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Formation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FormationController extends Controller
 {
     public function index(){
-        return view('');
+        $formations= DB::select('SELECT formations.id,name,label,type_formation,beginDate,endDate 
+        FROM partenaires,referentiels,formations WHERE formations.partenaire_id=partenaires.id AND formations.referentiel_id=referentiels.id ');
+        //  dd($formations);
+        
+        // $formations = Formation::all();
+        return view('formation.index',compact('formations'));
+    }
+    public function creat(){
+       
+        return view('formation.create');
+    }
+    public function edit($id){
+        $formation = Formation::findOrFail($id);
+        return view('formation.edit',compact('formation'));
     }
     public function create(Request $request){
         $request->validate([
@@ -26,9 +41,9 @@ class FormationController extends Controller
         $formation->beginDate = $request->beginDate;
         $formation->endDate = $request->endDate;
         $formation->save();
-    
+        // dd($request->all());
         session()->flash('success', 'Formation  crée avec succés');
-        return redirect()->route('professionel.niveau.index');
+        return redirect()->route('formation.index');
     }
     public function udapte(Request $request, $id, Formation $formation){
         
@@ -49,13 +64,13 @@ class FormationController extends Controller
             'endDate'=> $request->endDate,
         ]);
         
-        session()->flash('success', 'modifier  avec succés');
-        return redirect()->route('');
+        session()->flash('success', 'Formation modifier  avec succés');
+        return redirect()->route('formation.index');
     }
-     public function Niveaudelete($id){
+     public function delete($id){
         $formation = Formation::find($id);
         $formation->delete();
-        session()->flash('danger', 'supprimer avec succés');
-        return redirect()->route('');
+        session()->flash('danger', 'Formation supprimer avec succés');
+        return redirect()->route('formation.index');
     }
 }

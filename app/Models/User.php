@@ -64,4 +64,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function hasRole($role){
+        return $this->roles()->where("name", $role)->first() !== null;
+    }
+    // $user->hasRole("admin");
+    public function hasAnyRole($roles)
+    {
+        return $this->roles()->whereIn("name",$roles)->first() !== null;
+    }
 }

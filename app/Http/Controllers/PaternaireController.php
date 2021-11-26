@@ -11,8 +11,12 @@ class PaternaireController extends Controller
         $paternaires = Partenaire::all();
         return view('paternaire.index',compact('paternaires'));
     }
-    public function edit(){
-        return view ('paternaire.edit');
+    public function creat(){
+        return view('paternaire.create');
+    }
+    public function edit($id){
+        $paternaire = Partenaire::findorFail($id);
+        return view ('paternaire.edit',compact('paternaire'));
     }
     public function create(Request $request){
         $request->validate([
@@ -22,7 +26,7 @@ class PaternaireController extends Controller
             'contact'=>'required',
         ]);
         $paternaire = new Partenaire(); 
-        $paternaire->nom = $request->nom;
+        $paternaire->name = $request->name;
         $paternaire->activity_domain = $request->activity_domain;
         $paternaire->address = $request->address;
         $paternaire->contact = $request->contact;
@@ -42,7 +46,7 @@ class PaternaireController extends Controller
     //    dd('$niveau');
        $paternaire  = Partenaire::findorFail($id);
        $paternaire->update([
-            'name' => $request->nom,
+            'name' => $request->name,
             'activity_domain'=> $request->activity_domain,
             'address'=> $request->address,
             'contact'=> $request->contact,

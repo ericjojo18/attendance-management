@@ -1,66 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Emargement</title>
-
     <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/css/vendor.bundle.base.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-   <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
   </head>
   <body>
     <div class="container-scroller">
       @include('header')
-
       <div class="container-fluid page-body-wrapper">
         @include('heade')
-
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Emargement </h3>
+              <h3 class="page-title"> Presence </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{ route('presence.index') }}">Accueil</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">emargement</li>
+                  <li class="breadcrumb-item active" aria-current="page">presence</li>
                 </ol>
               </nav>
             </div>
             <div class="row">  
-              <div class="col-md-4 mb-3">
-                <form action="{{ route('emerge.presence') }}" method="post">
-                  @csrf
-                  <label for="from">de</label>
-                  <input class="form-control " value="{{date('Y-m-d')}}" type="date" id="date_day" name="from">
-                  
-                  <label for="name">a</label>
-                  <input class="form-control" value="{{date('Y-m-d')}}" type="date" id="date_day" name="to">
-                  <br>
-                  <input type="submit" value="recherche" class="btn btn-gradient-primary mr-2">
-                </form>
-                {{-- <input class="form-control" value="{{date('Y-m-d')}}" type="date" name="date_day" id="date_day"> --}}
-              </div> 
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Liste des emargements</h4>
-                   
+                    <h4 class="card-title">Liste des presence</h4>
                     </p>
-                   
                     <table class="table table-hover">
                       <thead>
                         <tr>
                           <th>jour</th>
                           <th> date </th>
                           <th> nom et prenom</th>
-                           <th>Heure d'arrivée</th>
+                           <th>date du jour</th>
+                            <th>Heure d'arrivée</th>
                             <th>Heure de depat</th>
-                            <th>temps mis a la fabrique</th>
                           <th> Etat </th>
                         </tr>
                       </thead>
@@ -88,7 +68,7 @@
                             <tr>
                                <td>{{__('day.'.date('l',strtotime($emerge->date_day)))}}</td>
                                <td>{{date('d-m-Y',strtotime($emerge->date_coming))}}</td>
-                               <td> {{$emerge->prenom}} {{$emerge->nom}}</td>
+                               <td> {{$emerge->prenom}} {{$emerge->nom }}</td>
                                <td>{{date('H:i',strtotime($emerge->date_coming))}}</td>
                                @if($emerge->departure_date == null)
                                    <td>Encore en salle</td>
@@ -115,19 +95,13 @@
                     </table>
                   </div>
                 </div>
-              </div>   
+              </div>  
             </div>
           </div>
         </div>
-        <!-- main-panel ends -->
       </div>
-      <!-- page-body-wrapper ends -->
     </div>
-    <div id='map' style='width: 400px; height: 300px;'></div>
-
-    
    <script>
-     
       const getSearchData =  async(date)=>
     {
       const resp = await fetch("{{env('BASE_URL')}}search_data_by_date/"+date);
@@ -142,7 +116,7 @@
      alert('En cour de développement');
  })
     var temp = ''
-    $('#date_day').on('change', e => 
+    $('#selected_date').on('change', e => 
     {
         let date = e.target.value;
      //    alert(date);
@@ -170,7 +144,7 @@
    </script>
     <script src="{{asset('assets/vendors/js/vendor.bundle.base.js')}}"></script>
     <script src="{{asset('assets/js/off-canvas.js')}}"></script>
-    <script src="{{asset('assets/js/hoverable-collapse.j')}}s"></script>
+    <script src="{{asset('assets/js/hoverable-collapse.js')}}"></script>
     <script src="{{asset('assets/js/misc.js')}}"></script>
   </body>
 </html>

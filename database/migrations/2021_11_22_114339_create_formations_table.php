@@ -18,8 +18,8 @@ class CreateFormationsTable extends Migration
             $table->unsignedBigInteger('partenaire_id');
             $table->unsignedBigInteger('referentiel_id');
             $table->string('type_formation' );
-            $table->date('beginDate');
-            $table->date('endDate');
+            $table->string('beginDate');
+            $table->string('endDate');
             $table->timestamps();
         });
     }
