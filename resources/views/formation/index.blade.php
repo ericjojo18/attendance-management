@@ -32,7 +32,7 @@
                 </ol>
               </nav>
             </div>
-            <div class="row">   
+            <div class="row">
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
@@ -76,27 +76,27 @@
                         </tr>
                       </thead>
                       <tbody>
-                       
+
                           @foreach ($formations as $formation)
                           <tr>
                             <td> {{$formation->id}}</td>
-                            <td> {{$formation->name}}</td>
-                             <td> {{$formation->label}}</td>
-                              <td> {{$formation->type_formation}}</td>
+                            <td> {{$formation->partenaire->name}}</td>
+                             <td> {{$formation->referentiel->label}}</td>
+                              <td> {{$formation->training}}</td>
                             <td> {{$formation->beginDate}}</td>
                             <td> {{$formation->endDate}}</td>
-                            <td> 
+                            <td>
                                 <a href="{{ route('formation.edit',$formation->id) }}" class="btn btn-primary">edit</a>
                                 <a href="{{ route('formation.delete',$formation->id) }}" class="btn btn-secondary">Supprimer</a>
                           </td>
-                          </tr>   
+                          </tr>
                           @endforeach
-                        
+
                       </tbody>
                     </table>
                   </div>
                 </div>
-              </div>   
+              </div>
             </div>
           </div>>
         </div>

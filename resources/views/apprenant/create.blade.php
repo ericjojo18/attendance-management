@@ -4,19 +4,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PARTENAIRES</title>
+    <title>APPRENANT</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="../../{{asset('assets/css/style.css')}}assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../../{{asset('assets/css/style.css')}}">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="../../{{asset('assets/css/style.css')}}">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="../../{{asset('assets/images/favicon.ico')}}" />
+    <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}" />
   </head>
   <body>
     <div class="container-scroller">
@@ -30,11 +23,11 @@
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> PARTENAIRES </h3>
+              <h3 class="page-title"> APPRENANT </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="{{ route('apprenant.index') }}">Accueil</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">partenaire</li>
+                  <li class="breadcrumb-item active" aria-current="page">APPRENANT</li>
                 </ol>
               </nav>
             </div>
@@ -62,32 +55,32 @@
                     <form class="forms-sample" action="{{ route('apprenant.create') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="type_formation">Nom</label>
+                            <label for="nom">Nom</label>
                             <input type="text" class="form-control" id="nom" name="nom" >
                           </div>
                           <div class="form-group">
-                            <label for="type_formation">Prenom</label>
+                            <label for="prenom">Prenom</label>
                             <input type="text" class="form-control" id="prenom" name="prenom" >
                           </div>
                           <div class="form-group">
-                            <label for="type_formation">Date de naissance</label>
+                            <label for="date_naissance">Date de naissance</label>
                             <input type="date" class="form-control" id="date_naissance" name="date_naissance" >
                           </div>
                           <div class="form-group">
-                            <label for="type_formation">Niveau</label>
+                            <label for="niveau">Niveau</label>
                             <input type="text" class="form-control" id="niveau" name="niveau" >
                           </div>
                       <div class="form-group">
-                        <label class="form-label"	for="type_formation">Formation</label>
-                        <select class="form-control" name="type_formation" id="type_formation">
+                        <label class="form-label"	for="formation_id">Formation</label>
+                        <select class="form-control" name="formation_id" id="formation_id">
                             @foreach(App\Models\Formation::all() as $formation)
                             <option value="">VEILLEZ REMPLIR</option>
-                            <option value="{{$formation->id }}">{{$formation->type_formation}}</option>
+                            <option value="{{$formation->id }}">{{$formation->training}}</option>
                             @endforeach
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="type_formation">Adresse email</label>
+                        <label for="email">Adresse email</label>
                         <input type="text" class="form-control" id="email" name="email" >
                       </div>
                       <div class="form-group">
@@ -104,7 +97,7 @@
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </div>
           <!-- content-wrapper ends -->

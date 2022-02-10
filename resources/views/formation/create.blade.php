@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PARTENAIRES</title>
+    <title>Formation </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/css/vendor.bundle.base.css')}}">
@@ -15,38 +15,38 @@
     <div class="container-scroller">
       @include('header')
       <div class="container-fluid page-body-wrapper">
-        @include('heade')>
+        @include('heade')
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> PARTENAIRES </h3>
+              <h3 class="page-title"> Formation </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="{{ route('paternaire.create') }}">Accueil</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">partenaire</li>
+                  <li class="breadcrumb-item"><a href="{{ route('formation.create') }}">Accueil</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Formation </li>
                 </ol>
               </nav>
             </div>
             <div class="row">
               <div class="col-md-6 grid-margin stretch-card">
-                @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible border-1 border-left-3 border-left-danger"role="alert"">
-                <button type="button"
-                        class="close"
-                        data-dismiss="alert"
-                        aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <ul>
-                        @foreach($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible border-1 border-left-3 border-left-danger"role="alert"">
+                    <button type="button"
+                            class="close"
+                            data-dismiss="alert"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Créer un partenaire</h4>
+                    <h4 class="card-title">Créer un formation </h4>
                     <p class="card-description"></p>
                     <form class="forms-sample" action="{{ route('formation.create') }}" method="POST">
                         @csrf
@@ -69,8 +69,8 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="type_formation">Formation</label>
-                        <input type="text" class="form-control" id="type_formation" name="type_formation" >
+                        <label for="training">Formation</label>
+                        <input type="text" class="form-control" id="training" name="training" >
                       </div>
                       <div class="form-group">
                         <label for="beginDate">Date du debut</label>
@@ -86,7 +86,7 @@
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </div>
         </div>

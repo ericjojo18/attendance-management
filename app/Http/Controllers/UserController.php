@@ -14,14 +14,14 @@ class UserController extends Controller
     use HasRoles;
     use PasswordValidationRules;
     public function index(){
-        //  $users= DB::select('SELECT users.id,nom,prenom,date_naissance,niveau,type_formation,email 
+        //  $users= DB::select('SELECT users.id,nom,prenom,date_naissance,niveau,type_formation,email
         // // FROM users,formations WHERE users.type_formation=formations.id ');
         //  dd($formations);
-        $users = User::role('apprenant')->get();; // display all those who have the learning role in the table
+        $users = User::role('apprenant')->get(); // display all those who have the learning role in the table
         return view('apprenant.index',compact('users'));
     }
     public function creat(){
-       
+
         return view('apprenant.create');
     }
     public function edit($id){
@@ -34,17 +34,17 @@ class UserController extends Controller
             'prenom'=>'required',
             'date_naissance'=>'required',
             'niveau'=>'required',
-            'type_formation'=>'required',
+            'formation_id'=>'required',
             'email'=>'required',
             'password'=>$this->passwordRules(),
         ]);
-       
-        $user  = new User(); 
+
+        $user  = new User();
         $user->nom= $request->nom;
         $user->prenom = $request->prenom;
         $user->date_naissance = $request->date_naissance;
         $user->niveau = $request->niveau;
-        $user->type_formation = $request->type_formation;
+        $user->formation_id = $request->formation_id;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->assignRole('Apprenant');
@@ -54,15 +54,15 @@ class UserController extends Controller
         return redirect()->route('apprenant.index');
     }
     public function udapte(Request $request, $id, User $user){
-        
+
         $request->validate([
             'nom'=>'required',
             'prenom'=>'required',
             'date_naissance'=>'required',
             'niveau'=>'required',
-            'type_formation'=>'required',
+            'formation_id'=>'required',
             'email'=>'required',
-            'password'=>$this->passwordRules(),
+            // 'password'=>$this->passwordRules(),
         ]);
     //    dd('$niveau');
        $user = User::findorFail($id);
@@ -70,11 +70,11 @@ class UserController extends Controller
             'nom' => $request->nom,
             'prenom'=> $request->prenom,
             'date_naissance'=> $request->date_naissance,
-            'type_formation'=> $request->type_formation,
+            'formation_id'=> $request->formation_id,
             'email'=> $request->email,
-            'password'=>  Hash::make($request->password),
+            // 'password'=>  Hash::make($request->password),
         ]);
-        
+
         session()->flash('success', 'Apprenant modifier  avec succés');
         return redirect()->route('apprenant.index');
     }

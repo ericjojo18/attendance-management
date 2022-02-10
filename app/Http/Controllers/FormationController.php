@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\DB;
 class FormationController extends Controller
 {
     public function index(){
-        $formations= DB::select('SELECT formations.id,name,label,type_formation,beginDate,endDate 
-        FROM partenaires,referentiels,formations WHERE formations.partenaire_id=partenaires.id AND formations.referentiel_id=referentiels.id ');
+        // $formations= DB::select('SELECT formations.id,name,label,type_formation,beginDate,endDate
+        // FROM partenaires,referentiels,formations WHERE formations.partenaire_id=partenaires.id AND formations.referentiel_id=referentiels.id ');
         //  dd($formations);
-        
-        // $formations = Formation::all();
+
+         $formations = Formation::all();
         return view('formation.index',compact('formations'));
     }
     public function creat(){
-       
+
         return view('formation.create');
     }
     public function edit($id){
@@ -29,15 +29,15 @@ class FormationController extends Controller
         $request->validate([
             'partenaire_id'=>'required',
             'referentiel_id'=>'required',
-            'type_formation'=>'required',
+            'training'=>'required',
             'beginDate'=>'required',
             'endDate'=>'required',
         ]);
-       
-        $formation = new Formation(); 
+
+        $formation = new Formation();
         $formation->partenaire_id= $request->partenaire_id;
         $formation->referentiel_id = $request->referentiel_id;
-        $formation->type_formation = $request->type_formation;
+        $formation->training = $request->training;
         $formation->beginDate = $request->beginDate;
         $formation->endDate = $request->endDate;
         $formation->save();
@@ -46,11 +46,11 @@ class FormationController extends Controller
         return redirect()->route('formation.index');
     }
     public function udapte(Request $request, $id, Formation $formation){
-        
+
        $request->validate([
             'partenaire_id'=>'required',
             'referentiel_id'=>'required',
-            'type_formation'=>'required',
+            'training'=>'required',
             'beginDate'=>'required',
             'endDate'=>'required',
        ]);
@@ -59,11 +59,11 @@ class FormationController extends Controller
        $formation->update([
             'partenaire_id' => $request->partenaire_id,
             'referentiel_id'=> $request->referentiel_id,
-            'type_formation'=> $request->type_formation,
+            'training'=> $request->training,
             'beginDate'=> $request->beginDate,
             'endDate'=> $request->endDate,
         ]);
-        
+
         session()->flash('success', 'Formation modifier  avec succés');
         return redirect()->route('formation.index');
     }

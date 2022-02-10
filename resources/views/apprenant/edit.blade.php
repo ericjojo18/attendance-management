@@ -78,11 +78,11 @@
                             <input type="text" class="form-control" id="niveau" name="niveau" value="{{$user->niveau}}">
                           </div>
                       <div class="form-group">
-                        <label class="form-label"	for="type_formation">Formation</label>
-                        <select class="form-control" name="type_formation" id="type_formation">
+                        <label class="form-label"	for="formation_id">Formation</label>
+                        <select class="form-control" name="formation_id" id="formation_id">
                             @foreach(App\Models\Formation::all() as $formation)
                             <option value="">VEILLEZ REMPLIR</option>
-                            <option value="{{$formation->type_formation }}" {{$formation->id == $user->type_formation ? 'selected' : ''}}>{{$formation->type_formation}}</option>
+                            <option value="{{$formation->training}}" {{$formation->id == $user->formation_id ? 'selected' : ''}}>{{$formation->training}}</option>
                             @endforeach
                         </select>
                       </div>
@@ -90,21 +90,21 @@
                         <label for="type_formation">Adresse email</label>
                         <input type="text" class="form-control" id="email" name="email" value="{{$user->email}}" >
                       </div>
-                      <div class="form-group">
+                      {{-- <div class="form-group">
                         <label for="password">Mot de passe</label>
                         <input type="password" class="form-control" id="password" name="password" >
                       </div>
                       <div class="form-group">
                         <label for="password_confirmation">Confirmer mot de passe</label>
                         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-                      </div>
+                      </div> --}}
                       <button type="submit" class="btn btn-gradient-primary mr-2">Enregistrer</button>
                       <a href="{{ route('apprenant.index') }}" class="btn btn-light">Retour</a>
                     </form>
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </div>
           <!-- content-wrapper ends -->

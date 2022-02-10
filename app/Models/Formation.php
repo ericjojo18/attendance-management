@@ -7,12 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Formation extends Model
 {
-    use HasFactory; 
+    use HasFactory;
     protected $fillable =[
         'partenaire_id',
         'referentiel_id',
-        'type_formation',
+        'training',
         'beginDate',
         'endDate',
     ];
+
+    public function partenaire()
+    {
+        return $this->belongsTo(Partenaire::class,'partenaire_id');
+    }
+    public function referentiel()
+    {
+        return $this->belongsTo(Referentiel::class,'referentiel_id');
+    }
 }

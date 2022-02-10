@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('prenom');
             $table->date('date_naissance')->nullable();
             $table->string('niveau')->nullable();
-            $table->bigInteger('type_formation')->nullable();   
             $table->string('email')->unique();
+            $table->foreignId('formation_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -30,10 +30,14 @@ class User extends Authenticatable
         'prenom',
         'date_naissance',
         'niveau',
-        'type_formation',
+        'formation_id',
         'email',
         'password',
     ];
+    public function formation()
+    {
+        return $this->hasOne(Formation::class,'formation_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

@@ -68,8 +68,8 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="type_formation">Formation</label>
-                        <input type="text" class="form-control" id="type_formation" name="type_formation" value="{{$formation->type_formation}}" >
+                        <label for="training">Formation</label>
+                        <input type="text" class="form-control" id="training" name="training" value="{{$formation->training}}" >
                       </div>
                       <div class="form-group">
                         <label for="beginDate">Date du debut</label>
@@ -85,7 +85,7 @@
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </div>
         </div>

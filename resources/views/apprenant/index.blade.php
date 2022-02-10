@@ -38,7 +38,7 @@
                 </ol>
               </nav>
             </div>
-            <div class="row">   
+            <div class="row">
               <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
@@ -76,35 +76,35 @@
                           <th> Prénom</th>
                            <th> Date</th>
                             <th>Niveau</th>
-                            <th>Formation</th>
+                            {{-- <th>Formation</th> --}}
                             <th>Email</th>
                           <th> Action </th>
                         </tr>
                       </thead>
                       <tbody>
-                       
+
                           @foreach ($users as $user)
                           <tr>
                             <td> {{$user->nom}}</td>
                             <td> {{$user->prenom}}</td>
                              <td> {{$user->date_naissance}}</td>
                              <td> {{$user->niveau}}</td>
-                              <td> {{$user->type_formation}}</td>
+                              {{-- <td>{{$user->formation->training}} </td> --}}
                             <td> {{$user->email}}</td>
-                            <td> 
+                            <td>
                                 <a href="{{ route('apprenant.edit',$user->id) }}" class="btn btn-primary">edit</a>
                                 <a href="{{ route('apprenant.delete',$user->id) }}" class="btn btn-secondary">Supprimer</a>
                           </td>
-                          </tr>   
+                          </tr>
                           @endforeach
-                        
+
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
-             
-              
+
+
             </div>
           </div>
           <!-- content-wrapper ends -->
